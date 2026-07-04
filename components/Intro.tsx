@@ -47,7 +47,7 @@ export default function Intro() {
           </Reveal>
 
           <Reveal className="mt-5 max-w-[520px] rounded-sm border-l-2 border-accent bg-ink-850 px-6 py-5">
-            <span className="mb-2.5 block font-mono text-[11px] text-slate-dim">// OVERVIEW</span>
+            <span className="mb-2.5 block font-mono text-[11px] text-slate-dim">{"// OVERVIEW"}</span>
             <p className="text-[14.5px] leading-relaxed text-slate">
               SmarternX is a next-generation AI product company building intelligent solutions
               across multiple industries. We design and develop practical, secure, and scalable
