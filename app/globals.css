@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   THEME TOKENS
+   Every color in the design system is a CSS variable holding an
+   "R G B" triplet (space-separated, no commas) so Tailwind's
+   rgb(var(--x) / <alpha-value>) pattern can still do opacity
+   modifiers like bg-ink-900/60. Night is the default (:root);
+   [data-theme="day"] overrides the same variable names, so no
+   component needs to know which theme is active — every bg-*,
+   text-*, border-* class just resolves differently.
+   ============================================================ */
+:root {
+  --c-ink-900: 10 15 28;
+  --c-ink-850: 13 20 36;
+  --c-ink-800: 16 26 45;
+  --c-ink-700: 26 39 64;
+  --c-ink-600: 40 57 90;
+  --c-line: 35 50 82;
+  --c-paper: 233 237 245;
+  --c-slate: 133 147 176;
+  --c-slate-dim: 92 106 137;
+  --c-accent: 52 224 152;
+  --c-cyan: 95 211 243;
+  --c-purple: 181 123 255;
+  --c-orange: 255 138 76;
+  --c-ok: 123 224 160;
+}
+
+[data-theme="day"] {
+  --c-ink-900: 246 244 239;
+  --c-ink-850: 239 236 228;
+  --c-ink-800: 232 228 217;
+  --c-ink-700: 214 208 192;
+  --c-ink-600: 176 168 146;
+  --c-line: 214 207 190;
+  --c-paper: 26 23 18;
+  --c-slate: 90 83 68;
+  --c-slate-dim: 138 128 108;
+  --c-accent: 15 138 90;
+  --c-cyan: 11 129 154;
+  --c-purple: 124 58 196;
+  --c-orange: 191 90 20;
+  --c-ok: 22 138 76;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--c-ink-900));
+  color: rgb(var(--c-paper));
+  cursor: none;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+@media (hover: none), (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: rgb(var(--c-accent));
+  color: rgb(var(--c-ink-900));
+}
+
+/* Faint graph-paper backdrop used across the whole page */
+.bg-grid {
+  background-image:
+    linear-gradient(rgb(var(--c-line)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--c-line)) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.05;
+}
+
+/* Corner-bracket "instrument panel" treatment, reused on cards throughout */
+.panel-brackets {
+  position: relative;
+}
+.panel-brackets::before,
+.panel-brackets::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgb(var(--c-slate-dim));
+  border-style: solid;
+  opacity: 0.6;
+  transition: border-color 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+.panel-brackets::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.panel-brackets::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+.panel-brackets:hover::before,
+.panel-brackets:hover::after {
+  border-color: rgb(var(--c-accent));
+  opacity: 1;
+}
+
+/* Scroll-reveal base state; the "in-view" variant is toggled by the useInView hook */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.3, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   ENVIRONMENT BACKDROP — trees, fireflies, a driving car, and
+   drifting energy pulses (see components/EnvironmentBackdrop.tsx)
+   ============================================================ */
+.env-tree {
+  transform-origin: bottom center;
+  animation: envSway 6s ease-in-out infinite;
+}
+@keyframes envSway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+.env-firefly {
+  animation: envTwinkle 3.4s ease-in-out infinite;
+}
+@keyframes envTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.85); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+
+.env-car {
+  left: -8%;
+  animation: envDrive 24s linear infinite;
+}
+@keyframes envDrive {
+  0% { left: -8%; }
+  100% { left: 106%; }
+}
+
+.env-pulse-v {
+  top: 0%;
+  opacity: 0;
+  animation: envPulseV 9s linear infinite;
+}
+@keyframes envPulseV {
+  0% { top: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
