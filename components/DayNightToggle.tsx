@@ -67,14 +67,14 @@ export default function DayNightToggle({
     }
   }, [handleToggle]);
 
-  // Apply theme on mount
+  // Apply theme on mount - Fixed with proper dependencies
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Mode | null;
     if (savedTheme && savedTheme !== mode) {
       onChange(savedTheme);
       document.documentElement.setAttribute("data-theme", savedTheme);
     }
-  }, []);
+  }, [mode, onChange]); // ✅ Added missing dependencies
 
   if (!isMounted) {
     return null; // Prevent hydration mismatch

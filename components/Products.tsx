@@ -91,7 +91,6 @@ export default function Products() {
               <Reveal
                 key={product.id}
                 className="group relative rounded-2xl border border-line bg-background/50 p-6 transition-all duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 md:p-8"
-                delay={index * 0.1}
               >
                 {/* Status indicator */}
                 <div className="absolute -top-px left-8 h-[2px] w-12 rounded-full bg-gradient-to-r from-accent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
