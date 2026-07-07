@@ -27,7 +27,7 @@ const ACCENT: Record<Product["accentColor"], { bg: string; text: string }> = {
   orange: { bg: "bg-orange/15", text: "text-orange" },
 };
 
-// Hero Callout Component
+// Hero Callout Component - Original Style
 const HeroCallout: React.FC<HeroCalloutProps> = ({ callout }) => {
   const product = products.find((p) => p.code === callout.code);
   if (!product) return null;
@@ -61,7 +61,7 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative h-screen w-full overflow-hidden">
-      {/* Day/Night Images - Clean, no effects */}
+      {/* Day/Night Images */}
       <Image
         src="/images/hero-day.png"
         alt="SmarterNX AI ecosystem campus, daytime"
@@ -88,37 +88,46 @@ export default function Hero() {
         <DayNightToggle mode={theme} onChange={setTheme} />
       </div>
 
-      {/* Product Callouts - Only cards */}
+      {/* Product Callouts - Original Card Style */}
       {heroCallouts.map((callout) => (
         <HeroCallout key={callout.code} callout={callout} />
       ))}
 
-      {/* Minimal Branding - Bottom Left */}
-      <div className="absolute bottom-12 left-8 z-10 sm:left-12 lg:left-16">
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/30 bg-accent/10">
-            <span className="text-sm font-bold text-accent">S</span>
-          </div>
-          <div>
-            <div className="font-display text-sm font-medium text-paper/80">
-              SmarterNX
-            </div>
-            <div className="font-mono text-[9px] tracking-wider text-slate-dim/60">
-              AI PRODUCT COMPANY
-            </div>
-          </div>
+      {/* Main Content - Even Higher Top-Left */}
+      <div className="absolute left-4 top-8 z-10 max-w-[400px] sm:left-6 sm:top-12 lg:left-8 lg:top-16">
+        {/* 1. AI-Powered Ecosystem Badge - Small */}
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(142,247,90,0.2)] bg-[rgba(18,26,28,0.85)] px-3 py-1.5 backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#8EF75A]" />
+          <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.06em] text-[#8EF75A] sm:text-[10px] lg:text-[11px]">
+            AI-Powered Ecosystem
+          </span>
         </div>
+
+        {/* 2. Main Heading - Small */}
+        <h1 className="mt-2.5 font-display text-[24px] font-extrabold leading-[1.05] tracking-[-1px] text-white sm:text-[28px] lg:text-[32px]">
+          One AI.
+          <br />
+          <span className="text-[#8EF75A]">Infinite</span>
+          <br />
+          Possibilities.
+        </h1>
+
+        {/* 3. Paragraph - Small */}
+        <p className="mt-1.5 max-w-[380px] text-[12px] font-normal leading-[18px] text-[#B8C2CC] sm:text-[13px] sm:leading-[20px] lg:text-[14px] lg:leading-[22px]">
+          SmarterNX builds intelligent products that empower education,
+          healthcare, career, fitness, sports and everyday life with AI.
+        </p>
       </div>
 
       {/* Scroll Cue - Minimal */}
       <Link
         href="#intro"
         aria-label="Scroll to content"
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5 text-paper/40 transition-all duration-300 hover:text-accent hover:scale-110"
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white/30 transition-all duration-300 hover:text-white/60 hover:scale-110"
       >
         <span className="font-mono text-[8px] uppercase tracking-[0.3em]">Scroll</span>
-        <div className="flex h-6 w-4 items-start justify-center rounded-full border border-paper/20 p-1">
-          <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-paper/40" />
+        <div className="flex h-6 w-4 items-start justify-center rounded-full border border-white/20 p-1">
+          <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/40" />
         </div>
       </Link>
     </section>
