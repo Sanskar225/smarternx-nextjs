@@ -246,7 +246,7 @@ export default function Contact() {
                 {/* Form status message */}
                 {status === "sent" && (
                   <div className="text-center text-sm text-accent animate-float">
-                    Thank you! We'll get back to you soon. 🚀
+                    Thank you! We&apos;ll get back to you soon. 🚀
                   </div>
                 )}
                 {status === "error" && (
