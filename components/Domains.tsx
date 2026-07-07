@@ -383,7 +383,7 @@ export default function Domains() {
     } else {
       console.error("No ecosystem data found for:", domainName);
     }
-  }, []);
+  }, [ecosystemData]); // ✅ Fixed: Added ecosystemData as dependency
 
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
