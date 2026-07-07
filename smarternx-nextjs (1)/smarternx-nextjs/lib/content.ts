@@ -165,3 +165,32 @@ export const footerColumns = [
 ];
 
 export const legalLinks = ["Privacy Policy", "Terms of Use", "Cookie Policy", "Responsible AI Policy"];
+export const heroCopy = {
+  badge: "AI-Powered Ecosystem",
+  heading: ["One AI.", "Infinite", "Possibilities."],
+  paragraph:
+    "SmarternX is building intelligent products that empower education, healthcare, career, fitness, sports and everyday life.",
+  primaryCta: { label: "Explore Ecosystem", href: "#products" },
+  secondaryCta: { label: "Watch Vision", href: "#intro" },
+  himalayaTag: {
+    title: "Built in the Himalayas",
+    subtitle: "Inspired by Himachal Pradesh",
+  },
+  headquarters: {
+    tag: "Our Headquarters",
+    place: "Himachal Pradesh, India",
+    body: "Inspired by the Mountains. Built for the World.",
+  },
+};
+
+// left/top are % positions over the hero artwork, matched to where each
+// building sits in hero-day.png / hero-night.png. `code` must match a
+// product's `code` field above.
+export const heroCallouts = [
+  { code: "SP", icon: "cap" as const, style: { left: "30%", top: "20%" } },
+  { code: "GG", icon: "brain" as const, style: { left: "63%", top: "18.5%" } },
+  { code: "AI", icon: "sparkles" as const, style: { left: "83%", top: "38%" } },
+  { code: "FL", icon: "heart" as const, style: { left: "80%", top: "60%" } },
+  { code: "CX", icon: "code" as const, style: { left: "15%", top: "59%" } },
+  { code: "DR", icon: "pin" as const, style: { left: "38%", top: "76%" } },
+] as const;
