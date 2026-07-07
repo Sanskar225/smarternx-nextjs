@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Reveal from "./Reveal";
 import DomainIcon from "./DomainIcon";
@@ -252,8 +252,8 @@ export default function Domains() {
   const [selectedDomain, setSelectedDomain] = useState<EcosystemData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Ecosystem data mapping - with proper keys matching domain names
-  const ecosystemData: Record<string, EcosystemData> = {
+  // Ecosystem data mapping - wrapped in useMemo to prevent recreation on every render
+  const ecosystemData: Record<string, EcosystemData> = useMemo(() => ({
     education: {
       id: "education",
       title: "Education Ecosystem",
@@ -367,7 +367,7 @@ export default function Domains() {
         }
       ]
     }
-  };
+  }), []); // Empty dependency array - never changes
 
   const handleDomainClick = useCallback((domainName: string) => {
     // Convert domain name to key
@@ -383,7 +383,7 @@ export default function Domains() {
     } else {
       console.error("No ecosystem data found for:", domainName);
     }
-  }, [ecosystemData]); // ✅ Fixed: Added ecosystemData as dependency
+  }, [ecosystemData]); // ecosystemData is now stable with useMemo
 
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
