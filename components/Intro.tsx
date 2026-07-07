@@ -170,8 +170,8 @@ export default function Intro() {
           {/* Right column - Stats sidebar */}
           <div className="hidden lg:block">
             <div className="sticky top-28 space-y-6">
-              {stats.map((stat, index) => (
-                <Reveal key={stat.label} delay={(index + 1) * 0.1}>
+              {stats.map((stat) => (
+                <Reveal key={stat.label}>
                   <StatCard {...stat} />
                 </Reveal>
               ))}
